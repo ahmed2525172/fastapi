@@ -10,6 +10,10 @@ def index():
 def about():
     return {'data':'about page'}
 
+@app.get('/blog/unpublished')
+def unpublished():
+    return {'data': 'All unpublished Blogs'}
+
 
 @app.get('/blog/{id}')
 def show(id: int):
