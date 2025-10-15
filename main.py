@@ -4,7 +4,7 @@ app = FastAPI()
 
 @app.get('/')
 def index():
-    return {'data':'blog list'}
+    return {'data':'blogs'}
 
 @app.get('/about')
 def about():
