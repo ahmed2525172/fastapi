@@ -25,13 +25,15 @@ def all(db: Session = Depends(get_db)):
     return blogs
 
 
-@app.get('/blog/{id}', status_code=200)
+@app.get('/blog/{id}', status_code=200, response_model = Schemas.ShowBlog)
 def show(id, response: Response, db: Session = Depends(get_db)):
     blog = db.query(models.Blog).filter(models.Blog.id == id).first()
     if not blog:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
                              detail=f'The Blog with id {id} is unavailable')
+    
     return blog
+
 
 @app.post('/blog', status_code=status.HTTP_201_CREATED)
 def create(request: Schemas.Blog, db: Session = Depends(get_db)):
